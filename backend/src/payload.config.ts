@@ -8,7 +8,8 @@ import { buildConfig } from 'payload/config'
 import Users from './collections/Users'
 import Todo from './collections/Todo'
 import Priority from './collections/Priority'
-import Activity from './collections/Activity'
+// import Activity from './collections/Activity'
+import Logs from './collections/Logs'
 
 // /src/payload.config.ts
 export default buildConfig({
@@ -17,7 +18,7 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [Users, Todo, Priority, Activity],
+  collections: [Users, Todo, Priority, Logs],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

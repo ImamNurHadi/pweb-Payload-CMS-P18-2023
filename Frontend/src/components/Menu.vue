@@ -46,7 +46,7 @@
                         </button>
                         <button @click="showAddCategoryForm = true"
                             class="category-button add-category-button hover:bg-blue-600">
-                                <FontAwesomeIcon icon="plus" />
+                            <FontAwesomeIcon icon="plus" />
                         </button>
                     </div>
                 </div>
