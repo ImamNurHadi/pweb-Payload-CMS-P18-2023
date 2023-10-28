@@ -17,7 +17,7 @@ export default {
       newTask: {
         id: null,
         name: "",
-        urgency: "",
+        priority: "",
         due: new Date(),
       },
       editingIndex: null,
@@ -25,9 +25,21 @@ export default {
   },
 
   created() {
-    this.getUrgencies(); // Panggil fungsi getUrgencies untuk mengisi data urgencies
+    this.getUrgencies();
+    this.fetchTasks(); // Panggil fungsi getUrgencies untuk mengisi data urgencies
   },
   methods: {
+    async fetchTasks() {
+      await fetch('http://localhost:3000/api/Todo')
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.docs);
+          this.tasks = data.docs;
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
     async getUrgencies() {
       await fetch('http://localhost:3000/api/Priority')
         .then((response) => response.json())
@@ -139,7 +151,7 @@ export default {
           <tr v-for="(task, index) in tasks" :key="index"
             class="bg-gray-700 hover-bg-gray-800 transition duration-300 ease-in-out">
             <td class="px-4 py-2 text-gray-100">{{ task.name }}</td>
-            <td class="px-4 py-2 text-gray-100">{{ task.urgency }}</td>
+            <td class="px-4 py-2 text-gray-100">{{ task.priority.name }}</td>
             <td class="px-4 py-2 text-gray-100">{{ task.due }}</td>
             <td class="px-4 py-2 flex items-center">
               <button @click="editTask(index)"
